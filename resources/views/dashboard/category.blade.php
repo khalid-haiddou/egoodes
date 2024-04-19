@@ -75,7 +75,19 @@
                     <i class="bi bi-grid-fill"></i>
                     <span>Categories</span>
                 </a>
-            </li>  
+            </li>
+            <li class="sidebar-item active">
+                <a href="/dashboard/roles" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span> All Users</span>
+                </a>
+            </li>
+            <li class="sidebar-item active">
+                <a href="/logout" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

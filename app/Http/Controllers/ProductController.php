@@ -41,8 +41,24 @@ class ProductController extends Controller
     return redirect()->back()->with('success', 'Product created successfully.');
 }
         
-
+public function index()
+{
+    // Get the authenticated seller's ID
+    $sellerId = auth()->id();
     
-        
+    // Retrieve categories
+    $categories = Category::all();
+
+    // Retrieve products belonging to the authenticated seller
+    $products = Product::where('seller_id', $sellerId)->get();
+
+    return view('dashboard.seller', compact('products', 'categories'));
+}
+    
+public function destroy(Product $product)
+{
+    $product->delete();
+    return redirect()->back()->with('success', 'Product deleted successfully.');
+}
         
 }

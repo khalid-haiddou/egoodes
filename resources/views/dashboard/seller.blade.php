@@ -76,6 +76,13 @@
                     <span>My Orders</span>
                 </a>
             </li>  
+
+            <li class="sidebar-item active">
+                <a href="/logout" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Logout</span>
+                </a>
+            </li>  
         </ul>
     </div>
 </div>
@@ -248,7 +255,13 @@
         </div>
         <div class="card-footer d-flex justify-content-between bg-yellow border">
             <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-eye text-primary mr-1"></i>Update</a>
-            <a href="#" class="btn btn-sm btn-outline-danger"><i class="fas fa-shopping-cart text-danger mr-1"></i>Delete Now</a>
+            <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-shopping-cart text-danger mr-1"></i>Delete Now
+                </button>
+            </form>
         </div>
     </div>
 </div>

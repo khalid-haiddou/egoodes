@@ -91,9 +91,10 @@ public function index()
 public function iseller()
 {   
     $categories = Category::all(); 
-    $products = Product::all();
-    return view('dashboard.seller', ['categories' => $categories, 'products' => $products]);
+    
+    return view('dashboard.seller', ['categories' => $categories]);
 }
+
    
 }
 

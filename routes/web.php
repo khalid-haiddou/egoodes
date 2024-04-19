@@ -31,8 +31,11 @@ Route::get('/dashboard/roles', [RolesController::class, 'index'])->name('roles.i
 Route::post('/dashboard/categories', [CategoryController::class, 'store'])->name('categories.store');
 Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])->name('categories.update'); // Changed route name
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-Route::get('/dashboard/seller', [AuthController::class, 'iseller'])->name('dashboard.seller');
+Route::get('/dashboard/seller', [ProductController::class, 'index'])->name('dashboard.seller');
 Route::post('/dashboard/seller/store', [ProductController::class, 'store'])->name('seller.store');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/dashboard/roles', [RolesController::class, 'index'])->name('dashboard.roles');
+Route::delete('/dashboard/roles/{user}', [RolesController::class,'destroy'])->name('users.destroy');
 Route::get('/home', function () {
     return view('pages/home');
 });
