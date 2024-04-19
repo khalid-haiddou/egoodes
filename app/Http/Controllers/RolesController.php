@@ -20,5 +20,7 @@ class RolesController extends Controller
         $user->delete();
         return back()->with('success', 'user deleted successfully.');
     }
+
+    
 }
 

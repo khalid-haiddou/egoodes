@@ -36,6 +36,7 @@ Route::post('/dashboard/seller/store', [ProductController::class, 'store'])->nam
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 Route::get('/dashboard/roles', [RolesController::class, 'index'])->name('dashboard.roles');
 Route::delete('/dashboard/roles/{user}', [RolesController::class,'destroy'])->name('users.destroy');
+Route::put('/dashboard/roles/{user}', [RolesController::class,'update'])->name('users.update');
 Route::get('/home', function () {
     return view('pages/home');
 });

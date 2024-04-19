@@ -250,7 +250,7 @@
             <h6 class="text-truncate mb-3">{{ $product->title }}</h6>
             <span class="mb-3">{{ $product->short_description }}</span>
             <div class="d-flex justify-content-center">
-                <h6>${{ $product->price }}</h6><h6 class="text-muted ml-2"><del>$200</del></h6>
+                <h6 style="color: red;">${{ $product->price }}</h6>&nbsp;<h6 class="text-muted ml-2"><del>$200</del></h6>
             </div>
         </div>
         <div class="card-footer d-flex justify-content-between bg-yellow border">

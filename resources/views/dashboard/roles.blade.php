@@ -205,7 +205,8 @@
                 <td style="padding-left: 110px">
                     <!-- Update Button -->
                     <div class="d-flex">
-                        <button type="button" class="btn btn-primary btn-sm btn-edit edit-category" data-id="">Edit</button>
+                        <button type="button" class="btn btn-primary btn-sm btn-edit edit-user" data-id="{{ $user->id }}">Edit</button>
+
                         <form method="POST" action="{{ route('users.destroy', $user->id) }}" style="display: inline-block; margin-left: 5px;">
                             @csrf
                             @method('DELETE')
@@ -218,8 +219,33 @@
         </tbody>
     </table>
 <!-- end the categories table -->
+</div>
 
+
+<!-- Modal to update the users role -->
+<div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="roleModalLabel">Edit User Role</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form id="updateUserRoleForm" method="POST">
+          @csrf
+          @method('PUT') <!-- Assuming you are using the PUT method for updates -->
+          <div class="modal-body">
+            <input type="hidden" id="user_id" name="user_id" value="">
+            <!-- Add other fields for updating user role if needed -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- end the modal -->
         <div class="col-12 col-lg-3">
             <div class="card">
                 <div class="card-body py-4 px-4">
@@ -288,8 +314,20 @@
       });
     });
 </script>
-
-    
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var editButtons = document.querySelectorAll('.btn-edit');
+    editButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var userId = this.getAttribute('data-id');
+            document.getElementById('user_id').value = userId;
+            var roleModal = document.getElementById('roleModal');
+            var modal = new bootstrap.Modal(roleModal);
+            modal.show();
+        });
+    });
+});
+</script>    
 
 </body>
 
