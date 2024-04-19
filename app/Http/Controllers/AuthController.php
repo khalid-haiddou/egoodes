@@ -1,9 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 
@@ -87,6 +88,12 @@ public function index()
     $buyers = User::where('role', '=', 'user')->get();
     return view('dashboard.admin', compact('users', 'sellers', 'buyers'));
 }
-
+public function iseller()
+{   
+    $categories = Category::all(); 
+    $products = Product::all();
+    return view('dashboard.seller', ['categories' => $categories, 'products' => $products]);
+}
    
 }
+

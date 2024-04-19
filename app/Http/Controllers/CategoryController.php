@@ -15,36 +15,32 @@ class CategoryController extends Controller
     return view('dashboard.category', compact('categories', 'sellers'));
     }
 
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $path = explode('/', $request->file('image')->store('images', 'public'))[1];
+        $category = new Category();
+        $category->name = $request->name;
+        $category->image = $path;
+        $category->save();
+        return back()->with('success', 'Category created successfully.');
+    }
     public function destroy(Category $category)
     {
         $category->delete();
-
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
-    }
-
-    public function update(Request $request, Category $category)
-{
-    // Validate form data
-    $request->validate([
-        'category_name' => 'required|string|max:255',
-        'category_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048' // Assuming image upload
-    ]);
-
-    // Update category
-    $category->name = $request->input('category_name');
     
-    // Check if new image uploaded
-    if ($request->hasFile('category_image')) {
-        $image = $request->file('category_image');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
-        $category->image = $imageName;
+        return back()->with('success', 'Category deleted successfully.');
     }
-
+    public function update(Request $request, $id)
+{
+    $category = Category::findOrFail($id);
+    $category->name = $request->name;
     $category->save();
 
-    return redirect()->route('categories.index')->with('success', 'Category updated successfully');
+    return response()->json(['message' => 'Category updated successfully']);
 }
 
 }

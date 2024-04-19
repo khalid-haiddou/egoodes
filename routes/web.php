@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RolesController;
 use App\Models\User;
 
@@ -27,3 +28,11 @@ Route::get('/dashboard/admin', [AuthController::class, 'index'])->name('dashboar
 Route::get('/dashboard/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::get('/dashboard/roles', [RolesController::class, 'index'])->name('roles.index');
+Route::post('/dashboard/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::put('/dashboard/categories/{id}', [CategoryController::class, 'update'])->name('categories.update'); // Changed route name
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('/dashboard/seller', [AuthController::class, 'iseller'])->name('dashboard.seller');
+Route::post('/dashboard/seller/store', [ProductController::class, 'store'])->name('seller.store');
+Route::get('/home', function () {
+    return view('pages/home');
+});

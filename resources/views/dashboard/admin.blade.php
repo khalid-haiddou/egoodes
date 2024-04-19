@@ -65,29 +65,18 @@
             
             <li
                 class="sidebar-item active ">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{ route('dashboard.admin') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            
+
             <li class="sidebar-item active">
                 <a href="{{ route('categories.index') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Categories</span>
                 </a>
             </li>
-            <li
-                class="sidebar-item active ">
-                <a href="index.html" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>All users</span>
-                </a>
-                
-
-            </li>
-                 
-            
         </ul>
     </div>
 </div>
