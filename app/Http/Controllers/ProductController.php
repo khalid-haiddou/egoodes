@@ -69,6 +69,10 @@ public function detail($id)
     $product = Product::findOrFail($id);
     return view('pages.detail', compact('product', 'categories'));
 }
+public function cart()
+{
+    return view('pages.cart');
+}
 
 
 }
