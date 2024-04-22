@@ -225,26 +225,37 @@
 <!-- Modal to update the users role -->
 <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="roleModalLabel">Edit User Role</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="roleModalLabel">Edit User Role</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="updateUserRoleForm" method="POST" action="{{ route('users.update', ['user' => $user->id]) }}">
+                @csrf
+                @method('PUT') <!-- Assuming you are using the PUT method for updates -->
+                <div class="modal-body">
+                    <input type="hidden" id="user_id" name="user_id" value="">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-select" id="role" name="role">
+                            <option value="user">User</option>
+                            <option value="seller">Seller</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
-        <form id="updateUserRoleForm" method="POST">
-          @csrf
-          @method('PUT') <!-- Assuming you are using the PUT method for updates -->
-          <div class="modal-body">
-            <input type="hidden" id="user_id" name="user_id" value="">
-            <!-- Add other fields for updating user role if needed -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </form>
-      </div>
     </div>
-  </div>
+</div>
 <!-- end the modal -->
         <div class="col-12 col-lg-3">
             <div class="card">

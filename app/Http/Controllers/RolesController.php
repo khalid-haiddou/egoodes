@@ -20,7 +20,21 @@ class RolesController extends Controller
         $user->delete();
         return back()->with('success', 'user deleted successfully.');
     }
+    public function update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'name' => 'required|string|max:255',
+            'role' => 'required|in:user,seller,admin',
+        ]);
+        $user = User::findOrFail($validatedData['user_id']);
 
+        $user->name = $validatedData['name'];
+        $user->role = $validatedData['role'];
+        $user->save();
+
+        return redirect()->back()->with('success', 'User role and name updated successfully!');
+    }
     
 }
 

@@ -84,6 +84,12 @@
                 </a>
             </li>
             <li class="sidebar-item active">
+                <a href="" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>All Orders</span>
+                </a>
+            </li>  
+            <li class="sidebar-item active">
                 <a href="/logout" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Logout</span>

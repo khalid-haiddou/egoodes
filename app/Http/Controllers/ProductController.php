@@ -43,12 +43,8 @@ class ProductController extends Controller
         
 public function index()
 {
-    // Get the authenticated seller's ID
     $sellerId = auth()->id();
-    
-    // Retrieve categories
     $categories = Category::all();
-
     // Retrieve products belonging to the authenticated seller
     $products = Product::where('seller_id', $sellerId)->get();
 
@@ -60,5 +56,19 @@ public function destroy(Product $product)
     $product->delete();
     return redirect()->back()->with('success', 'Product deleted successfully.');
 }
-        
+public function home()
+{
+
+    $categories = Category::all();
+    $products = Product::all();
+
+    return view('pages.home', compact('products', 'categories'));
+}
+
+public function detail()
+{
+    $categories = Category::all();
+    $products = Product::all();
+    return view('pages.detail', compact('products', 'categories'));
+}
 }

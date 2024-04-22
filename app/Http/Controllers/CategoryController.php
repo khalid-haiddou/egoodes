@@ -42,5 +42,12 @@ class CategoryController extends Controller
 
     return response()->json(['message' => 'Category updated successfully']);
 }
+public function home()
+{
+    // Fetch all categories from the database
+    $categories = Category::all(); 
 
+    // Pass the categories to the 'pages.home' view
+    return view('pages.home', compact('categories'));
+}
 }
