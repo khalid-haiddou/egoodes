@@ -58,17 +58,17 @@ public function destroy(Product $product)
 }
 public function home()
 {
-
     $categories = Category::all();
     $products = Product::all();
 
     return view('pages.home', compact('products', 'categories'));
 }
-
-public function detail()
+public function detail($id)
 {
     $categories = Category::all();
-    $products = Product::all();
-    return view('pages.detail', compact('products', 'categories'));
+    $product = Product::findOrFail($id);
+    return view('pages.detail', compact('product', 'categories'));
 }
+
+
 }
