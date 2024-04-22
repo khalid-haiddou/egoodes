@@ -129,8 +129,8 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
+                                        <button class="btn btn-sm btn-primary btn-minus">
+                                            <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
                                     <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
@@ -271,6 +271,26 @@
 
     <!-- Template Javascript -->
     <script src={{ asset('js/js/main.js') }}></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var minusBtn = document.querySelector('.btn-minus');
+            var plusBtn = document.querySelector('.btn-plus');
+            var inputField = document.querySelector('.quantity input');
+    
+            minusBtn.addEventListener('click', function() {
+                var value = parseInt(inputField.value);
+                if (value > 1) {
+                    inputField.value = value - 1;
+                }
+            });
+    
+            plusBtn.addEventListener('click', function() {
+                var value = parseInt(inputField.value);
+                inputField.value = value + 1;
+            });
+        });
+    </script>
 </body>
 
 </html>
