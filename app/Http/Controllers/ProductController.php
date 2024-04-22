@@ -70,10 +70,27 @@ public function detail($id)
     $product = Product::findOrFail($id);
     return view('pages.detail', compact('product', 'categories'));
 }
-public function cart()
+public function addToCart(Request $request, $productId)
 {
-    return view('pages.cart');
+    $user_id = auth()->id();
+    // Validate the incoming request data
+    $validatedData = $request->validate([
+        'quantity' => 'required|integer|min:1',
+    ]);
+
+    // Retrieve the product
+    $product = Product::findOrFail($productId);
+
+    $cartItem = new Cart();
+    $cartItem->user_id = $user_id;
+    $cartItem->product_id = $product->id;
+    $cartItem->quantity = $validatedData['quantity'];
+    $cartItem->price = $product->price * $validatedData['quantity'];
+    $cartItem->save();
+
+    return redirect()->route('cart')->with('success', 'Product added to cart successfully.');
 }
+
 
 
 }

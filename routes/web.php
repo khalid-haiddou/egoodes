@@ -39,4 +39,4 @@ Route::delete('/dashboard/roles/{user}', [RolesController::class,'destroy'])->na
 Route::put('/dashboard/roles/{user}', [RolesController::class,'update'])->name('users.update');
 Route::get('/home', [ProductController::class, 'home'])->name('home');
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
-Route::get('/cart', [ProductController::class, 'cart'])->name('cart');
+Route::post('/cart/add/{product}', [ProductController::class, 'addToCart'])->name('cart.add');
