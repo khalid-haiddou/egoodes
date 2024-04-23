@@ -111,44 +111,28 @@
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <!-- Table to display cart items -->
-                <table class="table table-bordered text-center mb-0">
-                    <thead class="bg-secondary text-dark">
-                        <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        @foreach($cartItems as $cartItem)
-                        <tr>
-                            <td class="align-middle">
-                                <img src="{{ asset($cartItem->product->image) }}" alt="" style="width: 50px;">
-                                {{ $cartItem->product->title }}
-                            </td>
-                            <td class="align-middle">${{ $cartItem->product->price }}</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <!-- Display the quantity -->
-                                    {{ $cartItem->quantity }}
-                                </div>
-                            </td>
-                            <td class="align-middle">${{ $cartItem->price }}</td>
-                            <td class="align-middle">
-                                <form action="{{ route('cart.remove', $cartItem->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <h4 class="font-weight-semi-bold mb-4">Required Informations</h4>
+                    <div class="row"> 
+                        <div class="col-md-6 form-group">
+                            <label>Phone</label>
+                            <input class="form-control" type="text" placeholder="+123 456 789">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Country</label>
+                            <select class="custom-select">
+                                <option selected>United States</option>
+                                <option>France</option>
+                                <option>Canada</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Zip Code</label>
+                            <input class="form-control" type="text" placeholder="123">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4">
                 <!-- Checkout summary -->
