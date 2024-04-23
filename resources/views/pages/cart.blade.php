@@ -112,6 +112,7 @@
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
+                <!-- Table to display cart items -->
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
@@ -132,17 +133,8 @@
                             <td class="align-middle">${{ $cartItem->product->price }}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="{{ $cartItem->quantity }}">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
+                                    <!-- Display the quantity -->
+                                    {{ $cartItem->quantity }}
                                 </div>
                             </td>
                             <td class="align-middle">${{ $cartItem->price }}</td>
@@ -159,25 +151,26 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                <form class="mb-5" action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
-                        </div>
-                    </div>
-                </form>
+                <!-- Checkout summary -->
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+                        <h4 class="font-weight-semi-bold m-0">Order Total</h4>
                     </div>
                     <div class="card-body">
+                        <!-- Display the cart items and their totals -->
+                        @foreach($cartItems as $cartItem)
+                        <div class="d-flex justify-content-between">
+                            <p>{{ $cartItem->product->title }}</p>
+                            <p>${{ $cartItem->price }}</p>
+                        </div>
+                        @endforeach
+                        <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
                             <h6 class="font-weight-medium">${{ $totalPrice }}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Fast Shipping</h6>
+                            <h6 class="font-weight-medium">Shipping</h6>
                             <h6 class="font-weight-medium">$10</h6>
                         </div>
                     </div>
@@ -186,12 +179,34 @@
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">${{ $totalPrice + 10 }}</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                    </div>
+                </div>
+                <!-- Payment options -->
+                <div class="card border-secondary mb-5">
+                    <div class="card-header bg-secondary border-0">
+                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <label class="custom-control-label" for="directcheck">Debit / Credit Card</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>        
     <!-- Cart End -->
 
 

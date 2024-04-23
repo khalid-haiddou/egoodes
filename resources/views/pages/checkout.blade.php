@@ -111,52 +111,63 @@
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <div class="col-lg-8">
-                <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Required Informations</h4>
-                    <div class="row"> 
-                        <div class="col-md-6 form-group">
-                            <label>Phone</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Country</label>
-                            <select class="custom-select">
-                                <option selected>United States</option>
-                                <option>France</option>
-                                <option>Canada</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Zip Code</label>
-                            <input class="form-control" type="text" placeholder="123">
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-8 table-responsive mb-5">
+                <!-- Table to display cart items -->
+                <table class="table table-bordered text-center mb-0">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        @foreach($cartItems as $cartItem)
+                        <tr>
+                            <td class="align-middle">
+                                <img src="{{ asset($cartItem->product->image) }}" alt="" style="width: 50px;">
+                                {{ $cartItem->product->title }}
+                            </td>
+                            <td class="align-middle">${{ $cartItem->product->price }}</td>
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <!-- Display the quantity -->
+                                    {{ $cartItem->quantity }}
+                                </div>
+                            </td>
+                            <td class="align-middle">${{ $cartItem->price }}</td>
+                            <td class="align-middle">
+                                <form action="{{ route('cart.remove', $cartItem->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
             <div class="col-lg-4">
+                <!-- Checkout summary -->
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Order Total</h4>
                     </div>
                     <div class="card-body">
-                        <h5 class="font-weight-medium mb-3">Products</h5>
+                        <!-- Display the cart items and their totals -->
+                        @foreach($cartItems as $cartItem)
                         <div class="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 1</p>
-                            <p>$150</p>
+                            <p>{{ $cartItem->product->title }}</p>
+                            <p>${{ $cartItem->price }}</p>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 2</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 3</p>
-                            <p>$150</p>
-                        </div>
+                        @endforeach
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$150</h6>
+                            <h6 class="font-weight-medium">${{ $totalPrice }}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
@@ -166,10 +177,11 @@
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold">${{ $totalPrice + 10 }}</h5>
                         </div>
                     </div>
                 </div>
+                <!-- Payment options -->
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Payment</h4>
@@ -194,7 +206,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+    
     <!-- Checkout End -->
 
 

@@ -106,7 +106,15 @@ public function removeFromCart(Cart $cartItem)
     return redirect()->route('cart')->with('success', 'Product removed from cart successfully.');
 }
 
-public function checkout(){
-    return view('pages.checkout');
-}
+public function checkout()
+    {
+        $userId = auth()->id();
+        $cartItems = Cart::where('user_id', $userId)->get();
+    
+        // Calculate the total price
+        $totalPrice = $cartItems->sum('price');
+    
+        // Return the checkout view with cart items and total price
+        return view('pages.checkout', compact('cartItems', 'totalPrice'));
+    }
 }
