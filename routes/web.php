@@ -40,3 +40,6 @@ Route::put('/dashboard/roles/{user}', [RolesController::class,'update'])->name('
 Route::get('/home', [ProductController::class, 'home'])->name('home');
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 Route::post('/cart/add/{product}', [ProductController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [ProductController::class, 'Cart'])->name('cart');
+Route::delete('/cart/{cartItem}', [ProductController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout');

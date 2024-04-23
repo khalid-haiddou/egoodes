@@ -91,6 +91,22 @@ public function addToCart(Request $request, $productId)
     return redirect()->route('cart')->with('success', 'Product added to cart successfully.');
 }
 
+public function cart()
+{
+    $userId = auth()->id();
+    $cartItems = Cart::where('user_id', $userId)->get();
+    $totalPrice = $cartItems->sum('price');
 
+    return view('pages.cart', compact('cartItems', 'totalPrice'));
+}
+public function removeFromCart(Cart $cartItem)
+{
+    $cartItem->delete();
 
+    return redirect()->route('cart')->with('success', 'Product removed from cart successfully.');
+}
+
+public function checkout(){
+    return view('pages.checkout');
+}
 }
