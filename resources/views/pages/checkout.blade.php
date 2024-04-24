@@ -110,87 +110,91 @@
 
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-            <div class="col-lg-8">
-                <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Required Informations</h4>
-                    <div class="row"> 
-                        <div class="col-md-6 form-group">
-                            <label>Phone</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+        <form method="POST" action="{{ route('checkout') }}">
+            @csrf
+             <!-- Add this for security reasons -->
+            <div class="row px-xl-5">
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <h4 class="font-weight-semi-bold mb-4">Required Informations</h4>
+                        <div class="row"> 
+                            <div class="col-md-6 form-group">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" id="phone" name="phone" placeholder="+123 456 789">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Country</label>
+                                <select class="custom-select" id="country" name="country">
+                                    <option selected>United States</option>
+                                    <option>France</option>
+                                    <option>Canada</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Zip Code</label>
+                                <input class="form-control" type="text" id="zipCode" name="zipCode" placeholder="123">
+                            </div>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label>Country</label>
-                            <select class="custom-select">
-                                <option selected>United States</option>
-                                <option>France</option>
-                                <option>Canada</option>
-                            </select>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Checkout summary -->
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Order Total</h4>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label>Zip Code</label>
-                            <input class="form-control" type="text" placeholder="123">
+                        <div class="card-body">
+                            <!-- Display the cart items and their totals -->
+                            @foreach($cartItems as $cartItem)
+                            <div class="d-flex justify-content-between">
+                                <p>{{ $cartItem->product->title }}</p>
+                                <p>${{ $cartItem->price }}</p>
+                            </div>
+                            @endforeach
+                            <hr class="mt-0">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Subtotal</h6>
+                                <h6 class="font-weight-medium">${{ $totalPrice }}</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Shipping</h6>
+                                <h6 class="font-weight-medium">$10</h6>
+                            </div>
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">Total</h5>
+                                <h5 class="font-weight-bold">${{ $totalPrice + 10 }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Payment options -->
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment_method" id="paypal" value="Paypal">
+                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment_method" id="card" value="Card">
+                                    <label class="custom-control-label" for="card">Debit / Credit Card</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <!-- Checkout summary -->
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Order Total</h4>
-                    </div>
-                    <div class="card-body">
-                        <!-- Display the cart items and their totals -->
-                        @foreach($cartItems as $cartItem)
-                        <div class="d-flex justify-content-between">
-                            <p>{{ $cartItem->product->title }}</p>
-                            <p>${{ $cartItem->price }}</p>
-                        </div>
-                        @endforeach
-                        <hr class="mt-0">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">${{ $totalPrice }}</h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
-                        </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">${{ $totalPrice + 10 }}</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Payment options -->
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Debit / Credit Card</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>    
+        </form>
+    </div>  
     
     <!-- Checkout End -->
 
@@ -282,6 +286,7 @@
 
     <!-- Template Javascript -->
     <script src={{ asset('js/js/main.js') }} ></script>
+    
 </body>
 
 </html>
