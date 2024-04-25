@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('zip_code');
             $table->foreignId('cart_id')->onDelete('cascade');
             $table->decimal('total_amount', 10, 2);
+            $table->enum('payment_method', ['Paypal', 'Card'])->default('Paypal');
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
             $table->timestamps();
         });

@@ -13,7 +13,8 @@ class OrderController extends Controller
     {
         // Fetch orders associated with the currently authenticated user
         $user = Auth::user();
-        $orders = $user->orders()->orderBy('created_at', 'desc')->get();
+        $user= User::find($user->id);
+        $orders = $user::join('products',)->orderBy('created_at', 'desc')->get();
 
         // Pass the orders data to the view
         return view('dashboard.orders', compact('orders'));
