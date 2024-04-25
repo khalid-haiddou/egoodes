@@ -46,4 +46,4 @@ Route::get('/cart', [ProductController::class, 'Cart'])->name('cart');
 Route::delete('/cart/{cartItem}', [ProductController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout');
 Route::post('/checkout', [CheckoutController::class ,'checkout'])->name('checkout');
-Route::get('/dashboard/orders', [OrderController::class, 'index'])->name('dashboard.orders');
+Route::get('/dashboard/orders', [OrderController::class, 'showOrders'])->name('dashboard.orders');
