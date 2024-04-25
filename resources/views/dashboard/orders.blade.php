@@ -173,100 +173,7 @@
            
             <div class="row">    
             </div>
-            <h3> Discover Your Products</h3>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newProductModal">New Product</button>
-              
-
-
-            <!-- New Product Modal -->
-<div class="modal fade" id="newProductModal" tabindex="-1" aria-labelledby="newProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="newProductModalLabel">New Product</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="createProductForm" action="{{ route('seller.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('POST')
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select class="form-select" id="category" name="category" required>
-                            <option value="" selected disabled>Select Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="price" name="price" step="0.01" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Image</label>
-                        <input type="file" class="form-control" id="image" name="image">
-                    </div>
-                    <div class="mb-3">
-                        <label for="short_description" class="form-label">Short Description</label>
-                        <textarea class="form-control" id="short_description" name="short_description" rows="2" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select class="form-select" id="status" name="status" required>
-                            <option value="available">Available</option>
-                            <option value="out_of_stock">Out of Stock</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Create Product</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="row">  <!-- CARD PRODUCT -->
-@foreach($products as $product)
-<div class="col-md-4 mt-3">
-    <div class="card product-item border-0 mb-4">
-        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-            <img class="img-fluid w-100" src="{{asset($product->image)}}" alt="{{ $product->title }}">
-        </div>
-        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-            <h6 class="text-truncate mb-3">{{ $product->title }}</h6>
-            <span class="mb-3">{{ $product->short_description }}</span>
-            <div class="d-flex justify-content-center">
-                <h6 style="color: red;">${{ $product->price }}</h6>&nbsp;<h6 class="text-muted ml-2"><del>$200</del></h6>
-            </div>
-        </div>
-        <div class="card-footer d-flex justify-content-between bg-yellow border">
-            <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-eye text-primary mr-1"></i>Update</a>
-            <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-outline-danger">
-                    <i class="fas fa-shopping-cart text-danger mr-1"></i>Delete Now
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-@endforeach
-</div>  
+            here             
         </div>
         <div class="col-12 col-lg-3">
             <div class="card">
@@ -282,16 +189,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>New Buyers</h4>
-                </div>
-                <div class="card-content pb-4">
-
-                </div>
-            </div> 
         </div>        
-
     </section>
 </div>
 <footer>

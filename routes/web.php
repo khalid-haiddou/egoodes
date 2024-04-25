@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Models\User;
 
 
@@ -45,3 +46,4 @@ Route::get('/cart', [ProductController::class, 'Cart'])->name('cart');
 Route::delete('/cart/{cartItem}', [ProductController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout');
 Route::post('/checkout', [CheckoutController::class ,'checkout'])->name('checkout');
+Route::get('/dashboard/orders', [OrderController::class, 'index'])->name('dashboard.orders');
