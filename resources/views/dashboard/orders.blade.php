@@ -176,29 +176,37 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th style="padding-left: 30px">ID</th>
-                        <th style="padding-left: 100px">User</th>
+                        <th style="padding-left: 50px">ID</th>
+                        <th style="padding-left: 30px">Buyer-ID</th>
                         <th style="padding-left: 100px">Phone</th>
-                        <th style="padding-left: 100px">Total Amount</th>
-                        <th style="padding-left: 100px">Payment Method</th>
-                        <th style="padding-left: 100px">Status</th>
-                        <th style="padding-left: 300px">Actions</th>
+                        <th style="padding-left: 150px">Country</th>
+                        <th style="padding-left: 60px">Zip</th>
+                        <th style="padding-left: 60px">Cart-id</th>
+                        <th style="padding-left: 60px">Status</th>
+                        <th style="padding-left: 60px">Total</th>
+                        <th style="padding-left: 60px">Payment</th>
+                        <th style="padding-left: 60px">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($orders as $order)
                     <tr>
-                        <td style="padding-left: 30px">{{ $order->id }}</td>
-                        <td style="padding-left: 100px">{{ $order->user->name }}</td>
+                        <td style="padding-left: 50px">{{ $order->id }}</td>   
+                        <td style="padding-left: 30px">{{ $order->user_id }}</td>
                         <td style="padding-left: 100px">{{ $order->phone }}</td>
-                        <td style="padding-left: 100px">${{ $order->total_amount }}</td>
-                        <td style="padding-left: 100px">{{ $order->payment_method }}</td>
-                        <td style="padding-left: 100px">{{ $order->status }}</td>
-                        <td style="padding-left: 300px">
-                            <!-- View Order Button -->
-                            <a href="" class="btn btn-primary btn-sm">View</a>
-                            <!-- Delete Order Button -->
+                        <td style="padding-left: 150px">{{ $order->country }}</td>
+                        <td style="padding-left: 60px">{{ $order->zip_code }}</td>
+                        <td style="padding-left: 60px">{{ $order->cart_id }}</td>
+                        <td style="padding-left: 60px">{{ $order->status }}</td>
+                        <td style="padding-left: 60px">{{ $order->total_amount }}</td>
+                        <td style="padding-left: 60px">{{ $order->payment_method }}</td>
+                        <td style="padding-left: 80px">
+                            <div style="display: flex; gap:5px;">
+                                <!-- View Order Button -->
+                                <a href="" class="btn btn-primary btn-sm">View</a>
+                                <!-- Delete Order Button -->
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

@@ -20,12 +20,14 @@ use App\Models\User;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//auth routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showSignupForm'])->name('register');
 Route::post('/register', [AuthController::class, 'signup']); 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//dashboard routes  
 Route::get('/dashboard/admin', [AuthController::class, 'index'])->name('dashboard.admin');
 Route::get('/dashboard/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
@@ -46,4 +48,4 @@ Route::get('/cart', [ProductController::class, 'Cart'])->name('cart');
 Route::delete('/cart/{cartItem}', [ProductController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout');
 Route::post('/checkout', [CheckoutController::class ,'checkout'])->name('checkout');
-Route::get('/dashboard/orders', [OrderController::class, 'showOrders'])->name('dashboard.orders');
+Route::get('/dashboard/orders', [OrderController::class, 'index'])->name('orders.index');

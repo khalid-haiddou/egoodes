@@ -30,4 +30,8 @@ class Order extends Model
     {
         return $this->hasManyThrough(Product::class, Cart::class, 'id', 'product_id', 'cart_id', 'product_id');
     }
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'cart_id');
+    }
 }

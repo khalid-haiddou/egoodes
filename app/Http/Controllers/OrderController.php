@@ -9,14 +9,17 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function showOrders()
+    public function index()
     {
-        // Fetch orders associated with the currently authenticated user
+        // Get the currently logged-in user
         $user = Auth::user();
-        $user= User::find($user->id);
-        $orders = $user::join('products',)->orderBy('created_at', 'desc')->get();
 
-        // Pass the orders data to the view
-        return view('dashboard.orders', compact('orders'));
+        // Fetch only the orders related to the seller's products
+        $orders = Order::whereHas('product', function ($query) use ($user) {
+            $query->where('seller_id', $user->id);
+        })->get();
+
+        // Pass the orders to the view
+        return view('dashboard.orders', ['orders' => $orders]);
     }
 }
