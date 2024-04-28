@@ -24,7 +24,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="logo">
-                <a href="index.html"><img src={{ asset('css/assets/compiled/svg/logo.svg') }} alt="Logo" srcset=""></a>
+                <a href=""><h3> EGOODES</h3></a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -62,6 +62,7 @@
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-title">Menu</li>
+            
             <li
                 class="sidebar-item active ">
                 <a href="{{ route('dashboard.admin') }}" class='sidebar-link'>
@@ -83,11 +84,17 @@
                 </a>
             </li>
             <li class="sidebar-item active">
+                <a href="/dashboard/all-orders" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>All Orders</span>
+                </a>
+            </li>  
+            <li class="sidebar-item active">
                 <a href="/logout" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Logout</span>
                 </a>
-            </li>
+            </li>  
         </ul>
     </div>
 </div>
@@ -116,8 +123,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Users</h6>
+                                    <h6 class="font-extrabold mb-0">{{ count($users) }}</h6>
                                 </div>
                             </div> 
                         </div>
@@ -133,8 +140,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="text-muted font-semibold">Categories</h6>
+                                    <h6 class="font-extrabold mb-0">{{ count($categories) }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -150,8 +157,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="text-muted font-semibold">Orders</h6>
+                                    <h6 class="font-extrabold mb-0">{{ count($Orders) }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -167,14 +174,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="text-muted font-semibold">Products</h6>
+                                    <h6 class="font-extrabold mb-0">{{ count($Products) }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
            
             <div class="row">    
             </div>

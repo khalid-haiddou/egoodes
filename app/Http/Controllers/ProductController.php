@@ -46,9 +46,7 @@ public function index()
 {
     $sellerId = auth()->id();
     $categories = Category::all();
-    // Retrieve products belonging to the authenticated seller
     $products = Product::where('seller_id', $sellerId)->get();
-
     return view('dashboard.seller', compact('products', 'categories'));
 }
     
@@ -117,4 +115,25 @@ public function checkout()
         // Return the checkout view with cart items and total price
         return view('pages.checkout', compact('cartItems', 'totalPrice'));
     }
+    public function search(Request $request)
+{
+    if($request->ajax())
+    {
+        $output = '';
+        $query = $request->get('query');
+        $products = Product::where('title', 'like', '%'.$query.'%')->get();
+        if($products)
+        {
+            foreach($products as $product)
+            {
+                $output .= '<a href="'.route("detail", ["id" => $product->id]).'" class="dropdown-item">'.$product->title.'</a>';
+            }
+        }
+        else
+        {
+            $output .= '<p class="dropdown-item">No results found</p>';
+        }
+        return $output;
+    }
+}
 }

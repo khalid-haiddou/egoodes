@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Facades\Gate;
 
 class RolesController extends Controller
@@ -12,7 +15,10 @@ class RolesController extends Controller
     {
     $users = User::where('role', '!=', 'admin')->get();
     $sellers = $users->where('role', 'seller')->take(4);
-    return view('dashboard.roles', compact('sellers' , 'users'));
+    $Orders = Order::all();
+    $Products = Product::all();
+    $categories = Category::all();
+    return view('dashboard.roles', compact('sellers' , 'users', 'Orders', 'Products', 'categories'));
     }
 
     public function destroy(user $user)

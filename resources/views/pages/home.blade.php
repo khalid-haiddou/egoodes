@@ -35,9 +35,9 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form id="searchForm" action="{{ route('search') }}" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" id="searchInput" class="form-control" name="q" placeholder="Search for products">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -45,6 +45,7 @@
                         </div>
                     </div>
                 </form>
+                <div id="searchResults"></div>
             </div>
             <div class="col-lg-3 col-6 text-right">
                 </a>
@@ -411,6 +412,47 @@
 
     <!-- Template Javascript -->
     <script src={{ asset('css/js/main.js')}}></script>
+    <script>
+        $(document).ready(function(){
+            $('#searchInput').keyup(function(){
+                var query = $(this).val();
+                if(query != '')
+                {
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url:"{{ route('search') }}",
+                        method:"GET",
+                        data:{query:query, _token:_token},
+                        success:function(data){
+                            $('#searchResults').fadeIn();
+                            $('#searchResults').html(data);
+                        }
+                    });
+                }
+            });
+    
+            $(document).on('click', 'a', function(){
+                $('#searchInput').val($(this).text());
+                $('#searchResults').fadeOut();
+            });
+        });
+    </script>    
+    <script>
+    $(document).ready(function() {
+        $('#searchForm').on('submit', function(e) {
+            e.preventDefault();
+    
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'GET',
+                data: $(this).serialize(),
+                success: function(data) {
+                    $('#searchResults').html(data);
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

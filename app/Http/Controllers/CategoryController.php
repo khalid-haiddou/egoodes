@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Order;
 class CategoryController extends Controller
 {
     public function index()
@@ -12,7 +13,9 @@ class CategoryController extends Controller
     $categories = Category::all(); 
     $users = User::where('role', '!=', 'admin')->get();
     $sellers = $users->where('role', 'seller')->take(4);
-    return view('dashboard.category', compact('categories', 'sellers'));
+    $Orders = Order::all();
+    $Products = Product::all();
+    return view('dashboard.category', compact('categories', 'sellers', 'Orders', 'Products', 'users'));
     }
 
     public function store(Request $request)

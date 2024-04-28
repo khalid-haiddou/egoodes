@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
@@ -86,7 +87,10 @@ public function index()
     $users = User::where('role', '!=', 'admin')->get();
     $sellers = $users->where('role', 'seller')->take(4);
     $buyers = User::where('role', '=', 'user')->get();
-    return view('dashboard.admin', compact('users', 'sellers', 'buyers'));
+    $categories = Category::all();
+    $Orders = Order::all();
+    $Products = Product::all();
+    return view('dashboard.admin', compact('users', 'sellers', 'buyers', 'Orders' ,'categories' ,'Products'));
 }
 public function iseller()
 {   

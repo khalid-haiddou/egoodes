@@ -84,7 +84,7 @@
                 </a>
             </li>
             <li class="sidebar-item active">
-                <a href="/dashboard/all-orders" class='sidebar-link'>
+                <a href="" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>All Orders</span>
                 </a>
@@ -187,49 +187,50 @@
             </div>
             <h3>Discover New Buyers</h3>
            <div class="d-flex">
-                @foreach($buyers as $buyer)
-                    @if($loop->index < 4)
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src={{ asset('images/' . $buyer->image) }}>
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">{{ $buyer->name }}</h5>
-                            <h6 class="text-muted mb-0">{{ $buyer->role }}</h6>
-                        </div>
-                    </div>
-                    @endif
-                @endforeach
-            
            </div>
-           <h3 style="margin-top: 20px;">Last Orders</h3>
 
-           <table class="table">
+
+        <table class="table">
             <thead>
                 <tr>
-                    <th style="padding-left: 10px">ID</th>
+                    <th style="padding-left: 50px">ID</th>
                     <th style="padding-left: 30px">Buyer-ID</th>
+                    <th style="padding-left: 70px">Phone</th>
                     <th style="padding-left: 60px">Country</th>
                     <th style="padding-left: 60px">Zip</th>
                     <th style="padding-left: 60px">Cart-id</th>
                     <th style="padding-left: 40px">Status</th>
+                    <th style="padding-left: 60px">Total</th>
                     <th style="padding-left: 40px">Payment</th>
+                    <th style="padding-left: 60px">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($Orders as $Order)
                 <tr>
-                    <td style="padding-left: 10px">{{ $Order->id }}</td>   
+                    <td style="padding-left: 50px">{{ $Order->id }}</td>   
                     <td style="padding-left: 30px">{{ $Order->user_id }}</td>
+                    <td style="padding-left: 70px">{{ $Order->phone }}</td>
                     <td style="padding-left: 60px">{{ $Order->country }}</td>
                     <td style="padding-left: 60px">{{ $Order->zip_code }}</td>
                     <td style="padding-left: 60px">{{ $Order->cart_id }}</td>
                     <td style="padding-left: 40px">{{ $Order->status }}</td>
+                    <td style="padding-left: 60px">{{ $Order->total_amount }}</td>
                     <td style="padding-left: 40px">{{ $Order->payment_method }}</td>
+                    <td style="padding-left: 80px">
+                        <div style="display: flex; gap:5px;">
+                            <!-- View Order Button -->
+                            <a href="" class="btn btn-primary btn-sm">View</a>
+                            <!-- Delete Order Button -->
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+
+
 
         </div>
         <div class="col-12 col-lg-3">
@@ -247,34 +248,14 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">
-                    <h4>New Sellers</h4>
-                </div>
-                <div class="card-content pb-4">
-                    @foreach($sellers as $seller)
-                        @if($loop->index < 4)
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src={{ asset('images/' . $seller->image) }}>
-                            </div>
-                            <div class="name ms-4">
-                                <h5 class="mb-1">{{ $seller->name }}</h5>
-                                <h6 class="text-muted mb-0">Seller</h6>
-                            </div>
-                        </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div> 
+        </div> 
             
         </div>
     </section>
 </div>
 
 <footer>
-    <div class="footer clearfix mb-0 text-muted">
-        
-        
+    <div class="footer clearfix mb-0 text-muted"> 
     </div>
 </footer>
     </div>

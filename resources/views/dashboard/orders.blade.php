@@ -95,81 +95,13 @@
             </header>
             
 <div class="page-heading">
-    <h3>Profile Statistics</h3>
+    <h3>Dsicover All Orders</h3>
 </div> 
 <div class="page-content"> 
     <section class="row">
         <div class="col-12 col-lg-9">
-            <div class="row">
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon purple mb-2">
-                                        <i class="iconly-boldShow"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card"> 
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon blue mb-2">
-                                        <i class="iconly-boldProfile"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon green mb-2">
-                                        <i class="iconly-boldAdd-User"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon red mb-2">
-                                        <i class="iconly-boldBookmark"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+
             <div class="row">    
             </div>
            
@@ -178,13 +110,13 @@
                     <tr>
                         <th style="padding-left: 50px">ID</th>
                         <th style="padding-left: 30px">Buyer-ID</th>
-                        <th style="padding-left: 100px">Phone</th>
-                        <th style="padding-left: 150px">Country</th>
+                        <th style="padding-left: 70px">Phone</th>
+                        <th style="padding-left: 60px">Country</th>
                         <th style="padding-left: 60px">Zip</th>
                         <th style="padding-left: 60px">Cart-id</th>
-                        <th style="padding-left: 60px">Status</th>
+                        <th style="padding-left: 40px">Status</th>
                         <th style="padding-left: 60px">Total</th>
-                        <th style="padding-left: 60px">Payment</th>
+                        <th style="padding-left: 40px">Payment</th>
                         <th style="padding-left: 60px">Actions</th>
                     </tr>
                 </thead>
@@ -193,13 +125,13 @@
                     <tr>
                         <td style="padding-left: 50px">{{ $order->id }}</td>   
                         <td style="padding-left: 30px">{{ $order->user_id }}</td>
-                        <td style="padding-left: 100px">{{ $order->phone }}</td>
-                        <td style="padding-left: 150px">{{ $order->country }}</td>
+                        <td style="padding-left: 70px">{{ $order->phone }}</td>
+                        <td style="padding-left: 60px">{{ $order->country }}</td>
                         <td style="padding-left: 60px">{{ $order->zip_code }}</td>
                         <td style="padding-left: 60px">{{ $order->cart_id }}</td>
-                        <td style="padding-left: 60px">{{ $order->status }}</td>
+                        <td style="padding-left: 40px">{{ $order->status }}</td>
                         <td style="padding-left: 60px">{{ $order->total_amount }}</td>
-                        <td style="padding-left: 60px">{{ $order->payment_method }}</td>
+                        <td style="padding-left: 40px">{{ $order->payment_method }}</td>
                         <td style="padding-left: 80px">
                             <div style="display: flex; gap:5px;">
                                 <!-- View Order Button -->
@@ -220,17 +152,7 @@
         </div>
         <div class="col-12 col-lg-3">
             <div class="card">
-                <div class="card-body py-4 px-4">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="{{ asset('images/' . Auth::user()->image) }}">
-                        </div>
-                        <div class="ms-3 name">
-                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
-                            <h6 class="text-muted mb-0">{{ Auth::user()->role }}</h6>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>        
     </section>
