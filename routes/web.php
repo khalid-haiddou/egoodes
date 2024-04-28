@@ -50,4 +50,3 @@ Route::get('/checkout', [ProductController::class, 'checkout'])->name('checkout'
 Route::post('/checkout', [CheckoutController::class ,'checkout'])->name('checkout');
 Route::get('/dashboard/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/dashboard/all-orders', [OrderController::class, 'allOrders'])->name('orders.all');
-Route::get('/search', [ProductController::class,'search'])->name('search');
